@@ -1,11 +1,15 @@
+# Exercícios Práticos Intermediários de Cypress - OrangeHRM
 
-# Exercicios Intermediarios de Cypress - OrangeHRM
+Este repositório contém uma bateria de exercícios práticos para aprimorar suas habilidades em testes E2E utilizando Cypress. Todos os exercícios são voltados para interações entre páginas do **OrangeHRM**.
 
-## Pre-requisitos e Setup
-- URL Base padrao: `https://opensource-demo.orangehrmlive.com/web/index.php/auth/login`
-- Credenciais validas: Username `Admin`, Password `admin123`
+## Pré-requisitos e Setup
+- **URL Base:** `https://opensource-demo.orangehrmlive.com/web/index.php/auth/login`
+- **Credenciais de Acesso (Login com Sucesso):** 
+  - **Username:** `Admin`
+  - **Password:** `admin123`
 
 ---
+
 
 ### Exercicio 1: Otimizando a Inicializacao com baseUrl
 Objetivo: Configurar a URL globalmente para evitar o carregamento duplo e reloads desnecessarios no inicio dos testes.
@@ -148,4 +152,48 @@ Objetivo: Validar atributos de links externos de forma segura, sem tentar navega
 10. Confirme que o título **Dashboard** está visível.
 11. Finalize validando que o menu lateral permaneceu funcional durante toda a navegação.
 
+---
+### Fluxo Completo de Administração de Usuários e Funcionários
+
+**Objetivo:** Automatizar um fluxo completo da aplicação, validando autenticação, navegação entre módulos, pesquisa, limpeza de filtros, persistência da sessão e funcionamento da interface durante toda a jornada do usuário.
+
+### Cenário
+
+Você foi contratado para validar um dos principais fluxos utilizados pela equipe de Recursos Humanos. O objetivo é garantir que um administrador consiga navegar pelos módulos da aplicação, realizar consultas e retornar ao Dashboard sem que ocorram falhas durante o processo.
+
+### Requisitos
+
+1. Acesse a página de login utilizando `cy.visit()`.
+2. Realize o login utilizando:
+
+   * **Usuário:** `Admin`
+   * **Senha:** `admin123`
+3. Valide que a URL contém `/dashboard`.
+4. Verifique que o título **Dashboard** está visível.
+5. Confirme que o menu lateral foi carregado corretamente.
+6. Clique na opção **Admin**.
+7. Valide que a URL contém `/admin/viewSystemUsers`.
+8. Pesquise pelo usuário `Admin`.
+9. Valide que o usuário foi encontrado na tabela.
+10. Clique em **Reset** e confirme que o campo **Username** foi limpo.
+11. Realize uma nova pesquisa utilizando um usuário inexistente (`usuario123456`).
+12. Valide que a mensagem **No Records Found** é exibida.
+13. Clique novamente em **Reset**.
+14. Navegue para o módulo **PIM** utilizando o menu lateral.
+15. Valide que a URL contém `/pim/viewEmployeeList`.
+16. Pesquise um funcionário utilizando o campo **Employee Name**.
+17. Aguarde o autocomplete aparecer e selecione uma das opções.
+18. Clique em **Search**.
+19. Valide que a pesquisa retornou pelo menos um funcionário.
+20. Clique em **Reset** e confirme que todos os filtros foram limpos.
+21. Utilize o menu lateral para retornar ao **Dashboard**.
+22. Valide que a URL voltou para `/dashboard`.
+23. Abra o menu do usuário (canto superior direito).
+24. Verifique que as opções **About**, **Support**, **Change Password** e **Logout** estão disponíveis.
+25. Feche o menu e confirme que a aplicação continua funcional.
+26. Acesse novamente o módulo **Admin** e valide que a sessão do usuário continua autenticada (sem redirecionamento para a tela de login).
+27. Por fim, realize **Logout**.
+28. Valide que a aplicação retornou para a tela de login.
+29. Tente acessar diretamente a URL `/dashboard` utilizando `cy.visit()`.
+30. Confirme que o sistema redireciona automaticamente para a tela de login, comprovando que a sessão foi encerrada corretamente.
 
