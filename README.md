@@ -10,7 +10,6 @@ Este repositório contém uma bateria de exercícios práticos para aprimorar su
 
 ---
 
-
 ### Exercicio 1: Otimizando a Inicializacao com baseUrl
 Objetivo: Configurar a URL globalmente para evitar o carregamento duplo e reloads desnecessarios no inicio dos testes.
 1. Abra o arquivo `cypress.config.js` (ou `.ts`) na raiz do seu projeto.
